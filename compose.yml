@@ -13,3 +13,5 @@ services:
     restart: always
     volumes:
       - ./data:/opt/TeamCity
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
