@@ -7,7 +7,7 @@ WORKDIR /opt
 # Java Installation
 RUN sudo rpm --import https://yum.corretto.aws/corretto.key
 RUN sudo curl -L -o /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
-RUN sudo dnf install -y java-11-amazon-corretto-devel wget
+RUN sudo dnf install -y java-11-amazon-corretto-devel wget git
 
 # TeamCity Installation
 RUN wget https://download.jetbrains.com/teamcity/${filename}
