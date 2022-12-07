@@ -1,2 +1,5 @@
 all:
-	docker-compose up -d --build
+	docker-compose build --no-cache
+
+deploy:
+	docker-compose up -d
