@@ -12,6 +12,13 @@ services:
       - "8111:8111"
     restart: always
     volumes:
-      - ./data:/opt/TeamCity
+      - ./agent:/opt/TeamCity/buildAgent
+      - ./config:/opt/TeamCity/conf
+      - ./data:/root/.BuildServer
+      - ./licenses:/opt/TeamCity/licenses
+      - ./logs:/opt/TeamCity/logs
+      - ./temp:/opt/TeamCity/temp
+      - ./webapp:/opt/TeamCity/webapp
+      - ./work:/opt/TeamCity/work
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
