@@ -1,1 +1,8 @@
+agent/
+config/
 data/
+licenses/
+logs/
+temp/
+webapp/
+work/
