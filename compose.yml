@@ -7,13 +7,32 @@ services:
       dockerfile: ./Dockerfile
     container_name: "teamcity"
     image: "docker-teamcity-image"
+    networks:
+      - "teamcity"
     privileged: true
     ports:
       - "8111:8111"
     restart: always
     volumes:
-      - ./config:/opt/TeamCity/conf
-      - ./data:/root/.BuildServer
-      - ./logs:/opt/TeamCity/logs
+      - ./.data:/root/.BuildServer
+      - ./.logs:/opt/TeamCity/logs
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+  agent:
+    build:
+      context: ./agent
+      dockerfile: ./Dockerfile
+    container_name: "teamcity-agent"
+    image: "docker-teamcity-agent"
+    networks:
+      - "teamcity"
+    privileged: true
+    restart: always
+    volumes:
+      - ./.logs:/opt/agent/logs
+      - ./.works:/opt/agent/work
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+networks:
+  teamcity: {}

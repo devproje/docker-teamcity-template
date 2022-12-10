@@ -1,3 +1,5 @@
-config/
-data/
-logs/
+.data/
+.logs/
+.works/
+
+.DS_Store
