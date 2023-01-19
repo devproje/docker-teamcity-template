@@ -1,12 +1,9 @@
 version: "3.9"
 
 services:
-  ci:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  web:
     container_name: "teamcity"
-    image: "docker-teamcity-image"
+    image: "jetbrains/teamcity-server"
     networks:
       - "teamcity"
     privileged: true
@@ -14,10 +11,10 @@ services:
       - "8111:8111"
     restart: always
     volumes:
-      - ./.data:/root/.BuildServer
-      - ./.logs:/opt/TeamCity/logs
+      - ./.logs:/opt/teamcity/logs
+      - ./.data:/data/teamcity_server/datadir
       - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+
   agent:
     build:
       context: ./agent
